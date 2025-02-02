@@ -1,0 +1,35 @@
+services:
+  frontend:
+    build: ./faq_frontend  # Path to your frontend folder
+    ports:
+      - "3000:3000"  # Expose frontend app on port 3000
+    volumes:
+      - ./faq_frontend:/app  # Mount frontend code to container
+    environment:
+      - NODE_ENV=development
+    networks:
+      - frontend
+
+  backend:
+    build: ./faq-api  # Path to your backend folder
+    ports:
+      - "5000:5000"  # Expose backend API on port 5000
+    volumes:
+      - ./faq-api:/app  # Mount backend code to container
+    environment:
+      - NODE_ENV=development
+    networks:
+      - backend
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
