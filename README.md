@@ -1,70 +1,160 @@
-# Getting Started with Create React App
+# FAQ Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is an FAQ (Frequently Asked Questions) system built using React, Node.js, and MongoDB. It provides users with a platform to view, search, and manage FAQs related to a specific topic.
 
-## Available Scripts
+# Technologies Used
 
-In the project directory, you can run:
+- Frontend: React, Tailwind CSS
+- Backend: Node.js, Express
+- Database: MongoDB
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Setup Instructions
+- Clone the repository:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+``` bash
+git clone <repository-url>
+```
 
-### `npm test`
+- Install backend dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+``` bash
+cd backend
+npm install
+```
 
-### `npm run build`
+- Install frontend dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+cd frontend
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Start the server:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Run the backend server:
+```bash
+cd backend
+npm start
+```
 
-### `npm run eject`
+Run the frontend app:
+```bash
+cd frontend
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Visit: Open your browser and go to http://localhost:3000 to view the app.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+                OR
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Run Docker commands:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+docker-compose build
+docker-compose up
+```
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Routes Explained:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+localhost:5000/api/faqs : Shows all the FAQs in the database.
+localhost:5000/api/faqs?lang=hi or localhost:5000/api/faqs?lang=bn : Shows all the FAQs in provided language in the database.
 
-### Code Splitting
+To test above routes:
+- Go to postman:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. POST: Create a New FAQ
+- Method: POST
+- URL: http://localhost:5000/api/faqs
 
-### Analyzing the Bundle Size
+2. GET: Get All FAQs
+- Method: GET
+- URL: http://localhost:5000/api/faqs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+### Additional Work:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Go to localhost:3000/ to add FAQ in the database using form.
+Go to localhost:3000/all to see all the FAQs in the database.
 
-### Advanced Configuration
+## 📥 API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+➕ Add New FAQ
 
-### Deployment
+- POST /api/faq
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash 
 
-### `npm run build` fails to minify
+Request Body:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+{
+  "question": "What is Node.js?",
+  "answer": "Node.js is a JavaScript runtime."
+}
+```
+```bash
+Response:
+
+{
+  "message": "FAQ added successfully",
+  "faq": {
+    "question": "What is Node.js?",
+    "answer": "Node.js is a JavaScript runtime.",
+    "question_hi": "Node.js क्या है?",
+    "answer_hi": "Node.js एक जावास्क्रिप्ट रनटाइम है।",
+    "question_bn": "Node.js কি?",
+    "answer_bn": "Node.js একটি জাভাস্ক্রিপ্ট রানটাইম।"
+  }
+}
+```
+
+📋 Get All FAQs
+
+- GET /api/faq/all
+
+```bash
+Response:
+
+{
+  "faqs": [
+    {
+      "question": "What is Node.js?",
+      "answer": "Node.js is a JavaScript runtime."
+    }
+  ]
+}
+```
+
+🌐 Get FAQs in a Specific Language
+
+- GET /api/faq?lang=hi
+
+- Query Parameter: lang (supported: hi, bn)
+```bash
+Response:
+{
+  "faqs": [
+    {
+      "question": "What is Node.js?",
+      "answer": "Node.js is a JavaScript runtime.",
+      "question_hi": "Node.js क्या है?",
+      "answer_hi": "Node.js एक जावास्क्रिप्ट रनटाइम है।"
+    }
+  ]
+}
+```
+
+## Contributing
+
+1. Fork the repository.
+
+2. Create your feature branch (git checkout -b feature-branch).
+
+3. Commit your changes (git commit -m 'Add new feature').
+
+4. Push to the branch (git push origin feature-branch).
+
+5. Open a pull request.
+
+.👤 Authour: Ayush Gupta(https://www.linkedin.com/in/the-ayush-gupta/)

@@ -9,7 +9,7 @@ function CreateFAQ() {
 
     const newFAQ = { question, answer };
 
-    fetch('http://localhost:5000/api/faq', {
+    fetch('http://localhost:5000/api/faqs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
