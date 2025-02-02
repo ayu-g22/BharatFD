@@ -113,4 +113,21 @@ router.get('/faq', async (req, res) => {
   }
 });
 
+// GET route to fetch all FAQs
+router.get('/all', async (req, res) => {
+  try {
+    const faqs = await Faq.find(); // Fetch all FAQs from the database
+
+    if (faqs.length === 0) {
+      return res.status(404).json({ message: 'No FAQs found' });
+    }
+
+    res.status(200).json({ faqs }); // Return the list of FAQs
+  } catch (error) {
+    console.error('Error fetching all FAQs:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
 module.exports = router;

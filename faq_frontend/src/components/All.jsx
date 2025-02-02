@@ -4,7 +4,7 @@ function HomePage() {
   const [faqs, setFaqs] = useState([]);
 
   useEffect(() => {
-    fetch('/api/faqs')
+    fetch('http://localhost:5000/api/api/all')
       .then(response => response.json())
       .then(data => setFaqs(data))
       .catch(error => console.error('Error fetching FAQs:', error));

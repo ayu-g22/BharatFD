@@ -4,13 +4,20 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const faqRoutes = require('./routes/faqRoutes');
 const Redis = require('ioredis');
+const cors = require('cors');
 require('dotenv').config();
+
+
 
 // Initialize express app
 const app = express();
 
 // Use body-parser to parse incoming JSON requests
 app.use(bodyParser.json());
+
+app.use(cors({
+  origin: 'http://localhost:3000',  // Replace with your React app URL
+}));
 
 // MongoDB connection string from .env
 const mongoURI = process.env.MONGO_URI;

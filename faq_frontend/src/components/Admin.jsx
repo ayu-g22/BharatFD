@@ -9,14 +9,13 @@ function CreateFAQ() {
 
     const newFAQ = { question, answer };
 
-    fetch('http://faqendpoint-backend-1:5000/api/faqs', { /
+    fetch('http://localhost:5000/api/faq', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(newFAQ),
     })
-    
       .then(response => response.json())
       .then(data => {
         // Reset the form fields after successful submission
