@@ -44,9 +44,7 @@ cd frontend
 npm start
 ```
 
-- Visit: Open your browser and go to http://localhost:3000 to view the app.
-
-                OR
+                                            OR
 
 - Run Docker commands:
 
@@ -55,11 +53,13 @@ docker-compose build
 docker-compose up
 ```
 
+- Visit: Open your browser and go to http://localhost:3000 to view the app.
+
 
 ## Routes Explained:
 
-localhost:5000/api/faqs : Shows all the FAQs in the database.
-localhost:5000/api/faqs?lang=hi or localhost:5000/api/faqs?lang=bn : Shows all the FAQs in provided language in the database.
+- localhost:5000/api/faqs : Shows all the FAQs in the database.
+- localhost:5000/api/faqs?lang=hi or localhost:5000/api/faqs?lang=bn : Shows all the FAQs in provided language in the database.
 
 To test above routes:
 - Go to postman:
@@ -75,8 +75,8 @@ To test above routes:
 
 ### Additional Work:
 
-Go to localhost:3000/ to add FAQ in the database using form.
-Go to localhost:3000/all to see all the FAQs in the database.
+- Go to localhost:3000/ to add FAQ in the database using form.
+- Go to localhost:3000/all to see all the FAQs in the database.
 
 ## 📥 API Endpoints
 
